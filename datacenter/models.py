@@ -37,9 +37,7 @@ class Visit(models.Model):
             return self.leaved_at - self.entered_at
 
     def format_duration(self, duration):
-        seconds = duration.seconds
-        hours = seconds // 3600
-        remaining_seconds = seconds - (hours * 3600)
+        hours, remaining_seconds = divmod(duration.seconds, 3600)
         minutes = remaining_seconds // 60
         return '{} ч {} мин'.format(hours, minutes)
 
