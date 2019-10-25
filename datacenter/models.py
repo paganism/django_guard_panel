@@ -42,6 +42,4 @@ class Visit(models.Model):
         return '{} ч {} мин'.format(hours, minutes)
 
     def is_visit_long(self, duration):
-        if duration.seconds <= 3600:
-            return False
-        return True
+        return duration.seconds >= 3600
