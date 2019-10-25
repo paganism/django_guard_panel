@@ -9,10 +9,10 @@ def passcard_info_view(request, passcode):
     this_passcard_visits = Visit.objects.filter(passcard=passcard)
 
     for visit in this_passcard_visits:
-        duration = Visit.get_duration(visit)
+        duration = visit.get_duration()
         
-        visit.duration = Visit.format_duration(visit, duration)
-        visit.is_strange = Visit.is_visit_long(visit, duration)
+        visit.duration = visit.format_duration(duration)
+        visit.is_strange = visit.is_visit_long(duration)
 
     context = {
         "passcard": passcard,
